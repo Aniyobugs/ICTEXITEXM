@@ -116,7 +116,7 @@ export default function Login() {
         </Paper>
       </motion.div>
 
-      {/* Decorative Product Icons at bottom mimicking Mangools */}
+      {/* Decorative Product Icons at bottom mimicking Mangoolss */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
         <Box display="flex" gap={2} flexWrap="wrap" justifyContent="center" mt={4}>
           {['TaskFinder', 'TaskChecker', 'TaskWatcher'].map((item, i) => (
