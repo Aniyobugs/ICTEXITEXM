@@ -24,8 +24,33 @@ connectDB();
 
 app.use(express.json());
 
-const CLIENT_URL = process.env.CLIENT_URL;
-app.use(cors({ origin: CLIENT_URL, credentials: true }));
+// CORS: support single or multiple allowed origins via env
+// Set CLIENT_URLS to a comma-separated list (e.g. http://localhost:5173,https://yourapp.vercel.app)
+const allowedOrigins = (process.env.CLIENT_URLS || process.env.CLIENT_URL || 'http://localhost:5173')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow server-to-server or tools like curl (no origin)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    return callback(new Error('CORS policy: Origin not allowed'), false);
+  },
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use((req, res, next) => {
+  // quick guard to expose allowed origin dynamically (if cors middleware sets it)
+  res.header('Vary', 'Origin');
+  next();
+});
+
+app.use(cors(corsOptions));
 
 const sessionSecret = process.env.SESSION_SECRET;
 const mongoUrl = process.env.MONGO_URI;
