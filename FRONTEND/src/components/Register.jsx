@@ -63,7 +63,7 @@ export default function Register() {
               <TextField
                 fullWidth
                 size="small"
-                placeholder="e.g. Elon Musk"
+                placeholder="Fullname"
                 name="name"
                 required
                 value={form.name}
@@ -83,7 +83,7 @@ export default function Register() {
               <TextField
                 fullWidth
                 size="small"
-                placeholder="e.g. elon@tesla.com"
+                placeholder="e.g. aniyo@gmail.com"
                 name="email"
                 type="email"
                 required

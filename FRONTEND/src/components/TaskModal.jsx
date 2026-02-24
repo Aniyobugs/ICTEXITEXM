@@ -47,12 +47,12 @@ export default function TaskModal({ open, onClose, onSave, taskToEdit }) {
                         <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#888', mb: 1 }}>Description</Typography>
                         <TextField name="description" multiline rows={3} fullWidth value={form.description} onChange={handleChange} placeholder="Add more details here..." />
                     </Box>
-                    <Box display="flex" gap={2}>
-                        <Box flex={1}>
+                    <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
+                        <Box sx={{ flex: 1 }}>
                             <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#888', mb: 1 }}>Due Date</Typography>
                             <TextField name="dueDate" type="date" fullWidth value={form.dueDate} onChange={handleChange} />
                         </Box>
-                        <Box flex={1}>
+                        <Box sx={{ flex: 1 }}>
                             <FormControl fullWidth>
                                 <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#888', mb: 1 }}>Priority</Typography>
                                 <Select name="priority" value={form.priority} onChange={handleChange} sx={{ borderRadius: '6px', '& fieldset': { borderWidth: '2px', borderColor: '#e0e0e0' } }}>

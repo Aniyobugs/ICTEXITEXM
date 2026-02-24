@@ -83,7 +83,7 @@ export default function Dashboard() {
         <Toolbar>
           <Box display="flex" alignItems="center" flexGrow={1}>
             <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'linear-gradient(135deg, #ff6b54, #fcbc3f)', mr: 1.5 }} />
-            <Typography variant="h5" fontWeight="800" sx={{ color: '#2c3e50', letterSpacing: '-0.5px' }}>
+            <Typography variant="h5" fontWeight="800" sx={{ color: '#2c3e50', letterSpacing: '-0.5px', fontSize: { xs: '1rem', sm: '1.25rem' } }}>
               TaskMaster
             </Typography>
           </Box>
@@ -118,11 +118,11 @@ export default function Dashboard() {
         </MenuItem>
       </Menu>
 
-      <Container maxWidth="lg" sx={{ mt: 8, position: 'relative', zIndex: 10 }}>
+      <Container maxWidth="lg" sx={{ mt: { xs: 4, sm: 8 }, position: 'relative', zIndex: 10 }}>
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={6}>
-          <Typography variant="h3" fontWeight="800" color="#3d4450">My Tasks</Typography>
+          <Typography variant="h3" fontWeight="800" color="#3d4450" sx={{ fontSize: { xs: '1.25rem', sm: '2rem' } }}>My Tasks</Typography>
           <Button variant="contained" color="secondary" onClick={openCreateModal} startIcon={<AddIcon />} sx={{ borderRadius: '50px', background: 'linear-gradient(135deg, #ff6b54 0%, #fcbc3f 100%)', boxShadow: '0 4px 14px rgba(255, 107, 84, 0.4)', '&:hover': { background: 'linear-gradient(135deg, #e65c47 0%, #e5a939 100%)' } }}>
-            New Task
+            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>New Task</Box>
           </Button>
         </Box>
 
@@ -138,7 +138,7 @@ export default function Dashboard() {
           </Box>
         ) : (
           <motion.div layout>
-            <Grid container spacing={3}>
+            <Grid container spacing={{ xs: 2, sm: 3 }}>
               <AnimatePresence>
                 {tasks.map((task) => (
                   <Grid item xs={12} sm={6} md={4} key={task._id}>

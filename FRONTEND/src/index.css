@@ -70,3 +70,24 @@ body::after {
     transform: rotate(-25deg) translate(-15px, 15px);
   }
 }
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  body::before {
+    width: 220px;
+    height: 220px;
+    top: -30px;
+    right: -30px;
+    opacity: 0.85;
+  }
+  body::after {
+    width: 80px;
+    height: 70px;
+    bottom: 10%;
+    left: 6%;
+    opacity: 0.9;
+  }
+  html, body {
+    font-size: 14px;
+  }
+}

@@ -63,7 +63,7 @@ export default function Login() {
               <TextField
                 fullWidth
                 size="small"
-                placeholder="e.g. elon@tesla.com"
+                placeholder="email"
                 name="email"
                 type="email"
                 required
@@ -84,7 +84,7 @@ export default function Login() {
               <TextField
                 fullWidth
                 size="small"
-                placeholder="e.g. ilovetasks123"
+                placeholder="Password"
                 name="password"
                 type="password"
                 required
@@ -108,9 +108,7 @@ export default function Login() {
               <Link to="/register" style={{ color: '#0055ff', textDecoration: 'underline', fontWeight: 'bold', fontSize: '0.9rem' }}>
                 Don't have an account?
               </Link>
-              <Link to="#" style={{ color: '#0055ff', textDecoration: 'underline', fontWeight: 'bold', fontSize: '0.9rem' }}>
-                Forgot password?
-              </Link>
+              
             </Box>
           </Box>
         </Paper>

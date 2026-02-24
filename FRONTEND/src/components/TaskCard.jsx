@@ -47,7 +47,7 @@ export default function TaskCard({ task, onEdit, onDelete, onStatusChange }) {
                     }
                 }}
             >
-                <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                <CardContent sx={{ flexGrow: 1, p: { xs: 2, sm: 3 } }}>
                     <Box display="flex" justifyContent="space-between" mb={2}>
                         <Chip
                             size="small"
@@ -61,7 +61,7 @@ export default function TaskCard({ task, onEdit, onDelete, onStatusChange }) {
                             sx={{ borderColor: getStatusColor(task.status), color: getStatusColor(task.status), fontWeight: 'bold', borderRadius: '6px' }}
                         />
                     </Box>
-                    <Typography variant="h6" component="h2" fontWeight="800" color="#2c3e50" gutterBottom sx={{ textDecoration: task.status === 'Completed' ? 'line-through' : 'none' }}>
+                    <Typography variant="h6" component="h2" fontWeight="800" color="#2c3e50" gutterBottom sx={{ textDecoration: task.status === 'Completed' ? 'line-through' : 'none', fontSize: { xs: '1rem', sm: '1.1rem' } }}>
                         {task.title}
                     </Typography>
                     <Typography variant="body2" color="#666" paragraph sx={{ lineHeight: 1.6 }}>
