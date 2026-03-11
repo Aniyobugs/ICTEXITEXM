@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from './api';
 import { useAuth } from '../context/AuthContext';
 import { Box, Button, TextField, Typography, Paper, Container, Grid, Alert, InputAdornment } from '@mui/material';
 import { Person as PersonIcon, Lock as LockIcon } from '@mui/icons-material';
@@ -20,7 +20,7 @@ export default function Login() {
     setError(null);
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', form);
+      const res = await api.post('/api/auth/login', form);
       login(res.data.user);
       navigate('/dashboard');
     } catch (err) {

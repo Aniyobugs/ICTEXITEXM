@@ -9,7 +9,14 @@ cd FRONTEND
 npm install
 ```
 
-2. Create `.env` from `.env.example` and set `VITE_API_URL` if the backend runs on a non-default location.
+2. Create a `.env` file (you can copy from `.env.example` below) and set `VITE_API_BASE_URL` to the address of your backend if it is not running on the default `http://localhost:5000`.
+
+   ```
+   # FRONTEND/.env.example
+   VITE_API_BASE_URL=https://your-backend.example.com
+   ```
+
+   > **Deployment tip:** On platforms like Vercel or Render, set `VITE_API_BASE_URL` in the project’s Environment Variables/Settings page. Vite will replace `import.meta.env.VITE_API_BASE_URL` at build time with the value you provide.
 
 3. Run dev server
 

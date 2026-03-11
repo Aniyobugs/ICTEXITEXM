@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from './api';
 import { useAuth } from '../context/AuthContext';
 import TaskCard from './TaskCard';
 import TaskModal from './TaskModal';
@@ -24,7 +24,7 @@ export default function Dashboard() {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/tasks');
+      const res = await api.get('/api/tasks');
       setTasks(res.data.tasks || []);
     } catch (err) {
       console.error(err);
@@ -36,10 +36,10 @@ export default function Dashboard() {
   const handleSaveTask = async (taskData) => {
     try {
       if (editingTask) {
-        const res = await axios.put(`http://localhost:5000/api/tasks/${editingTask._id}`, taskData);
+        const res = await api.put(`/api/tasks/${editingTask._id}`, taskData);
         setTasks(tasks.map((t) => (t._id === editingTask._id ? res.data.task : t)));
       } else {
-        const res = await axios.post('http://localhost:5000/api/tasks', taskData);
+        const res = await api.post('/api/tasks', taskData);
         setTasks([res.data.task, ...tasks]);
       }
       setModalOpen(false);
@@ -51,7 +51,7 @@ export default function Dashboard() {
 
   const handleDeleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+      await api.delete(`/api/tasks/${id}`);
       setTasks(tasks.filter((t) => t._id !== id));
     } catch (err) {
       console.error(err);
@@ -60,7 +60,7 @@ export default function Dashboard() {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/tasks/${id}`, { status: newStatus });
+      const res = await api.put(`/api/tasks/${id}`, { status: newStatus });
       setTasks(tasks.map((t) => (t._id === id ? res.data.task : t)));
     } catch (err) {
       console.error(err);
