@@ -19,6 +19,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
+// In production the app is behind Render's proxy/load‑balancer.  Enable
+// trust proxy so that `req.secure` is correctly set and secure cookies work.
+app.set('trust proxy', 1);
+
 // Connect to DB
 connectDB();
 
