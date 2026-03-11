@@ -55,18 +55,26 @@ app.use(cors(corsOptions));
 const sessionSecret = process.env.SESSION_SECRET;
 const mongoUrl = process.env.MONGO_URI;
 
+// the backend uses a session cookie for auth. since the frontend and backend
+// are on different origins in both development (localhost:5173 <> 5000) and
+// production (vercel <> render), the cookie must be allowed cross-site. the
+// only reliable way to do that is `SameSite=None` (which also requires `secure`
+// when running over HTTPS – fine on both dev and prod since Vite/HMR run over
+// https://localhost by default).
+const cookieOptions = {
+  httpOnly: true,
+  secure: NODE_ENV === 'production', // secure flag can be false on local http
+  sameSite: 'none', // always none so POST/XHR requests include it
+  maxAge: 1000 * 60 * 60 * 24, // 1 day
+};
+
 app.use(
   session({
     name: 'sid',
     secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      secure: NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
-    },
+    cookie: cookieOptions,
     store: MongoStore.create({ mongoUrl }),
   }),
 );

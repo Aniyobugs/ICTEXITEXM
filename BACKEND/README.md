@@ -31,3 +31,11 @@ API endpoints (session-based auth):
 - `DELETE /api/tasks/:id` (protected)
 
 Sessions are stored in MongoDB using `connect-mongo`.
+
+## Deployment notes
+
+- When the frontend is hosted on a different origin, set `CLIENT_URL` to
+  the frontend's full URL (e.g. `https://ictexitexm.vercel.app`).
+- In production the session cookie uses `SameSite=None` so that it can be
+  included on cross-origin requests. Browsers require `secure` cookies
+  when `SameSite=None`, so both backend and frontend must be served over HTTPS.

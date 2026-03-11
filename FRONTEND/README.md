@@ -1,5 +1,11 @@
 # Frontend (React + Vite)
 
+> **Cookie policy:** the backend sets a `sid` session cookie with
+> `SameSite=None` and `secure=true` in production so it can be sent from the
+> Vercel domain to the Render domain.  Make sure `VITE_API_BASE_URL` points to
+> the backend origin and both sites use HTTPS.
+
+
 Setup:
 
 1. Install dependencies
