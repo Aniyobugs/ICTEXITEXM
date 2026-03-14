@@ -68,7 +68,7 @@ const mongoUrl = process.env.MONGO_URI;
 const cookieOptions = {
   httpOnly: true,
   secure: NODE_ENV === 'production', // secure flag can be false on local http
-  sameSite: 'none', // always none so POST/XHR requests include it
+  sameSite: NODE_ENV === 'production' ? 'none' : 'lax', // lax for dev, none for prod
   maxAge: 1000 * 60 * 60 * 24, // 1 day
 };
 
